@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: lightsaber-service
+    
+ibm:  mq:    queue-manager: QMKINOBI
+    channel: DEV.ADMIN.SVRCONN
+    conn-name: localhost(1414)
+    user: admin
+    password: passw0rd
+    client-id: ${spring.application.name}
+    application-name: ${spring.application.name}
+    pool:
+      enabled: true
+      maxConnections: 5
+    
+app:
+  messaging:
+    input:
+      queue:
+        order: LIGHTSABER.ORDER.QUEUE
+    output:
+      queue:
+        conformation: LIGHTSABER.CONFIRMATION.QUEUE 
+    
+    
+logging:
+  level:
+   com:
+     ibm:
+       mq:
+         spring:
+           boot: TRACE
