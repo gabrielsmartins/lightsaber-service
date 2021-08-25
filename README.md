@@ -16,9 +16,8 @@ docker run -e LICENSE=accept -e MQ_QMGR_NAME=QMKINOBI -p 1414:1414 -p 9443:9443 
 
 2. Access Console using https://localhost:9443/
 
-|*User*      | admin   |
-|------------|---------|
-|*Password*  |passw0rd |
+- *User*: admin   
+- *Password*: passw0rd 
 
 3.Create Local Queue
 
@@ -26,9 +25,8 @@ docker run -e LICENSE=accept -e MQ_QMGR_NAME=QMKINOBI -p 1414:1414 -p 9443:9443 
 
 Fill fields:
 
-| *Queue Name*        | LIGHTSABER.ORDER.QUEUE |
-|---------------------|------------------------|
-| *Queue Description* | Lightsaber Order Queue |
+- *Queue Name*: LIGHTSABER.ORDER.QUEUE 
+- *Queue Description*: Lightsaber Order Queue
 
 4. Send Some Message:
 
