@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: postgres
+    restart: always
+    container_name: "postgres"
+    environment:
+      - POSTGRES_DB=lightsaberdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'pgadmin4@pgadmin.org'
+      PGADMIN_DEFAULT_PASSWORD: 'admin'
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
+  ibmmq:
+    image: ibmcom/mq:9.2.3.0-r1
+    restart: always
+    container_name: ibmmq
+    environment:
+      - LICENSE=accept 
+      - MQ_QMGR_NAME=QMKINOBI 
+    ports:
+      - 1414:1414 
+      - 9443:9443
+  redis:
+    image: redis:6.2.5
+    container_name: redi
+    ports: 
+      - 6379:6379
+
+
+
+
