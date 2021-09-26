@@ -1,7 +1,5 @@
 package br.gabrielsmartins.lightsaber.infra.persistence.mapper;
 
-import java.util.LinkedList;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -21,18 +19,5 @@ public class LightsaberRepositoryMapper {
 		return mapper.map(lightsaberEntity,  Lightsaber.class);
 	}
 	
-	public Iterable<LightsaberEntity> mapToEntity(final Iterable<Lightsaber> lightsabers) {
-		final var mapper = new ModelMapper();
-		var lightsaberEntities = new LinkedList<LightsaberEntity>();
-		lightsabers.forEach(l -> lightsaberEntities.add(mapper.map(l, LightsaberEntity.class)));
-		return lightsaberEntities;
-	}
-	
-	public Iterable<Lightsaber> mapToDomain(final Iterable<LightsaberEntity> lightsaberEntities) {
-		final var mapper = new ModelMapper();
-		var lightsabers = new LinkedList<Lightsaber>();
-		lightsaberEntities.forEach(l -> lightsabers.add(mapper.map(l, Lightsaber.class)));
-		return lightsabers;
-	}
 
 }

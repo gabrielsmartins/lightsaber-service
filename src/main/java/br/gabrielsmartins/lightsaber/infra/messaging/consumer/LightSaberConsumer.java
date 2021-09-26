@@ -23,11 +23,16 @@ public class LightSaberConsumer {
 
 	@JmsListener(destination = "${app.messaging.input}")
 	public void consume(@Headers Map<String, Object> headers, @Payload LightsaberConsumerMessage message) {
-		log.info("Receiving message: {},{}", headers,message);
-		final var lightsaber = this.mapper.mapToDomain(message);
-		log.info("Processing lightsaber: {}", lightsaber);
-		final var processedLightsaber = this.service.process(lightsaber);
-		log.info("Lightsaber processed sucessfully: {}", processedLightsaber);
+		try {
+			log.info("Receiving message: {},{}", headers,message);
+			final var lightsaber = this.mapper.mapToDomain(message);
+			
+			log.info("Processing lightsaber: {}", lightsaber);
+			final var processedLightsaber = this.service.process(lightsaber);
+			log.info("Lightsaber processed sucessfully: {}", processedLightsaber);
+		}catch (Exception e) {
+			log.error("Error processing lightsaber", e);
+		}
 	}
 
 }

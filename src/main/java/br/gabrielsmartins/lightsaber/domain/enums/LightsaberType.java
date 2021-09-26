@@ -7,10 +7,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum LightsaberType {
 
-	MANUAL("MANUAL"),
-	SEMIAUTOMATIC("SEMIAUTOMATIC"),
-	AUTOMATIC("AUTOMATIC");
+	SINGLE_BLADED("SB","SINGLE BLADED"),
+	DOUBLE_BLADED("DB","DOUBLE BLADED"),
+	CROSSGUARD("CG","CROSSGUARD");
 	
+	private final String prefix;
 	private final String description;
 	
 }

@@ -2,6 +2,8 @@ package br.gabrielsmartins.lightsaber.infra.persistence.adapter;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Component;
 
@@ -21,21 +23,26 @@ public class LightsaberRepositoryAdapter implements LightsaberRepository {
 	@Override
 	public Lightsaber save(Lightsaber lightsaber) {
 		var lightsaberEntity = this.mapper.mapToEntity(lightsaber);
-		var savedLightSaberEntity = this.repository.save(lightsaberEntity);
+		var savedLightSaberEntity = this.repository.saveAndFlush(lightsaberEntity);
 		lightsaber.setId(savedLightSaberEntity.getId());
 		return this.mapper.mapToDomain(savedLightSaberEntity);
 	}
 
 	@Override
 	public Iterable<Lightsaber> saveAll(Iterable<Lightsaber> lightsabers) {
-		// TODO Auto-generated method stub
-		return null;
+		var lightsaberEntities = StreamSupport.stream(lightsabers.spliterator(), false)
+								              .map(this.mapper::mapToEntity)
+								              .collect(Collectors.toList());
+		var savedLightsabers = this.repository.saveAll(lightsaberEntities);
+		return savedLightsabers.stream()
+				               .map(this.mapper::mapToDomain)
+							   .collect(Collectors.toList());
 	}
 
 	@Override
 	public Optional<Lightsaber> findById(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.repository.findById(id)
+							  .map(this.mapper::mapToDomain);
 	}
 
 

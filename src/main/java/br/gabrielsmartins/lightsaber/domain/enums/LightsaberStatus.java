@@ -7,10 +7,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum LightsaberStatus {
 	
-	READY("READY"),
-	MAINTENANCE("MAINTENANCE"),
-	DEPRACATED("DEPRECATED");
+	READY('R',"READY"),
+	MAINTENANCE('M',"MAINTENANCE"),
+	DEPRECATED('D',"DEPRECATED");
 	
+	private final Character prefix;
 	private final String description;
 
 }

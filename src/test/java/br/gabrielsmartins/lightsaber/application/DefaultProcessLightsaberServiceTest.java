@@ -1,6 +1,6 @@
 package br.gabrielsmartins.lightsaber.application;
 
-import static br.gabrielsmartins.lightsaber.support.LightsaberSupport.defaultLightsaber;
+import static br.gabrielsmartins.lightsaber.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -32,7 +32,7 @@ public class DefaultProcessLightsaberServiceTest {
 	@Test
 	@DisplayName("Given Light saber When Process Then Save And Send Notification")
 	public void givenLightsaberWhenProcessThenSaveAndSendNotification() {
-		var lightsaber = defaultLightsaber().build();
+		var lightsaber = defaultSingleBladedLightsaber().build();
 		
 		when(this.repository.save(any(Lightsaber.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
 		

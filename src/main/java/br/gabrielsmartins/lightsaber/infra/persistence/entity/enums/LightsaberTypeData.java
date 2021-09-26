@@ -9,14 +9,14 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum LightsaberTypeData {
 
-	MANUAL('M',"MANUAL"),
-	SEMIAUTOMATIC('S',"SEMIAUTOMATIC"),
-	AUTOMATIC('A',"AUTOMATIC");
+	SINGLE_BLADED("SB","SINGLE BLADED"),
+	DOUBLE_BLADED("DB","DOUBLE BLADED"),
+	CROSSGUARD("CG","CROSSGUARD");
 	
-	private final Character code;
+	private final String code;
 	private final String description;
 	
-	public static LightsaberTypeData fromValue(Character code) {
+	public static LightsaberTypeData fromValue(String code) {
 		return Stream.of(LightsaberTypeData.values())
 				      .filter(type -> type.getCode().equals(code))
 				      .findFirst()
