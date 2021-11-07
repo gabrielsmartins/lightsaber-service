@@ -1,6 +1,6 @@
 package br.gabrielsmartins.lightsaber.application;
 
-import static br.gabrielsmartins.lightsaber.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaber;
+import static br.gabrielsmartins.lightsaber.domain.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;

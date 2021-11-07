@@ -1,7 +1,7 @@
 package br.gabrielsmartins.lightsaber.infra.persistence.adapter;
 
-import static br.gabrielsmartins.lightsaber.infra.persistence.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaberEntity;
-import static br.gabrielsmartins.lightsaber.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaber;
+import static br.gabrielsmartins.lightsaber.domain.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaber;
+import static br.gabrielsmartins.lightsaber.infra.persistence.entity.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaberEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -14,21 +14,29 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import br.gabrielsmartins.lightsaber.infra.persistence.entity.LightsaberEntity;
 import br.gabrielsmartins.lightsaber.infra.persistence.mapper.LightsaberRepositoryMapper;
 import br.gabrielsmartins.lightsaber.infra.persistence.repository.LightsaberJpaRepository;
+import lombok.RequiredArgsConstructor;
 
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LightsaberRepositoryAdapterTest {
 
 	private LightsaberRepositoryAdapter adapter;
+	private final LightsaberRepositoryMapper mapper;
 	private LightsaberJpaRepository repository;
 
 	@BeforeEach
 	public void setup() {
 		this.repository = mock(LightsaberJpaRepository.class);
-		var mapper = new LightsaberRepositoryMapper();
-		this.adapter = new LightsaberRepositoryAdapter(repository, mapper);
+		this.adapter = new LightsaberRepositoryAdapter(repository, this.mapper);
 	}
 	
 	@Test

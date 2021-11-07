@@ -24,6 +24,11 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class SingleBladedLightsaberEntity extends LightsaberEntity{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "due_date", columnDefinition = "date", nullable = false)
 	private LocalDate dueDate;
 	

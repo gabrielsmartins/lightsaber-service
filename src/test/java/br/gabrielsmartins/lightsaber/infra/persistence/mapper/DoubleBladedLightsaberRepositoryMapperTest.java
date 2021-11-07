@@ -1,30 +1,28 @@
 package br.gabrielsmartins.lightsaber.infra.persistence.mapper;
 
-import static br.gabrielsmartins.lightsaber.domain.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaber;
-import static br.gabrielsmartins.lightsaber.infra.persistence.entity.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaberEntity;
+import static br.gabrielsmartins.lightsaber.domain.support.DoubleBladedLightsaberSupport.defaultDoubleBladedLightsaber;
+import static br.gabrielsmartins.lightsaber.infra.persistence.entity.support.DoubleBladedLightsaberSupport.defaultDoubleBladedLightsaberEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import lombok.RequiredArgsConstructor;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class LightsaberRepositoryMapperTest {
+public class DoubleBladedLightsaberRepositoryMapperTest {
 	
-	private final LightsaberRepositoryMapper mapper;
+	private DoubleBladedLightsaberRepositoryMapper mapper;
+	
+	@BeforeEach
+	public void setup() {
+		this.mapper = new DoubleBladedLightsaberRepositoryMapper();
+	}
 	
 	@Test
 	@DisplayName("Given Lightsaber When Map Then Return Lightsaber Entity")
 	public void givenLightsaberWhenMapThenReturnLightsaberEntity() {
 		
-		var lightsaber = defaultSingleBladedLightsaber().build();
+		var lightsaber = defaultDoubleBladedLightsaber().build();
 		
 		var lightsaberEntity = this.mapper.mapToEntity(lightsaber);
 		
@@ -36,6 +34,8 @@ public class LightsaberRepositoryMapperTest {
 		assertThat(lightsaberEntity.getDescription()).isEqualTo(lightsaber.getDescription());
 		assertThat(lightsaberEntity.getCreatedAt()).isEqualTo(lightsaber.getCreatedAt());
 		assertThat(lightsaberEntity.getHistory().size()).isEqualTo(lightsaber.getHistory().size());
+		assertThat(lightsaberEntity.getMinEnergyLevel()).isEqualTo(lightsaber.getMinEnergyLevel());
+		assertThat(lightsaberEntity.getMaxEnergyLevel()).isEqualTo(lightsaber.getMaxEnergyLevel());
 	}
 
 	
@@ -43,7 +43,7 @@ public class LightsaberRepositoryMapperTest {
 	@DisplayName("Given Lightsaber Entity When Map Then Return Lightsaber")
 	public void givenLightsaberEntityWhenMapThenReturnLightsaber() {
 		
-		var lightsaberEntity = defaultSingleBladedLightsaberEntity().build();
+		var lightsaberEntity = defaultDoubleBladedLightsaberEntity().build();
 		
 		var lightsaber = this.mapper.mapToDomain(lightsaberEntity);
 		
@@ -55,10 +55,8 @@ public class LightsaberRepositoryMapperTest {
 		assertThat(lightsaber.getDescription()).isEqualTo(lightsaberEntity.getDescription());
 		assertThat(lightsaber.getCreatedAt()).isEqualTo(lightsaberEntity.getCreatedAt());
 		assertThat(lightsaber.getHistory().size()).isEqualTo(lightsaberEntity.getHistory().size());
+		assertThat(lightsaber.getMinEnergyLevel()).isEqualTo(lightsaberEntity.getMinEnergyLevel());
+		assertThat(lightsaber.getMaxEnergyLevel()).isEqualTo(lightsaberEntity.getMaxEnergyLevel());
 	}
-	
-	
-	
-	
 
 }

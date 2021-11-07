@@ -21,6 +21,11 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class DoubleBladedLightsaberEntity extends LightsaberEntity {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "min_energy_level", columnDefinition = "decimal(17,2)", nullable = false)
 	private Double minEnergyLevel;
 	

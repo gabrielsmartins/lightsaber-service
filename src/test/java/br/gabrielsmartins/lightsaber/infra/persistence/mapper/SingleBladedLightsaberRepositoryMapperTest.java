@@ -4,21 +4,19 @@ import static br.gabrielsmartins.lightsaber.domain.support.SingleBladedLightsabe
 import static br.gabrielsmartins.lightsaber.infra.persistence.entity.support.SingleBladedLightsaberSupport.defaultSingleBladedLightsaberEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import lombok.RequiredArgsConstructor;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class LightsaberRepositoryMapperTest {
+public class SingleBladedLightsaberRepositoryMapperTest {
+
+	private SingleBladedLightsaberRepositoryMapper mapper;
 	
-	private final LightsaberRepositoryMapper mapper;
+	@BeforeEach
+	public void setup() {
+		this.mapper = new SingleBladedLightsaberRepositoryMapper();
+	}
 	
 	@Test
 	@DisplayName("Given Lightsaber When Map Then Return Lightsaber Entity")
@@ -36,6 +34,8 @@ public class LightsaberRepositoryMapperTest {
 		assertThat(lightsaberEntity.getDescription()).isEqualTo(lightsaber.getDescription());
 		assertThat(lightsaberEntity.getCreatedAt()).isEqualTo(lightsaber.getCreatedAt());
 		assertThat(lightsaberEntity.getHistory().size()).isEqualTo(lightsaber.getHistory().size());
+		assertThat(lightsaberEntity.getDueDate()).isEqualTo(lightsaber.getDueDate());
+		assertThat(lightsaberEntity.getManufacturerId()).isEqualTo(lightsaber.getManufacturerId());
 	}
 
 	
@@ -55,10 +55,7 @@ public class LightsaberRepositoryMapperTest {
 		assertThat(lightsaber.getDescription()).isEqualTo(lightsaberEntity.getDescription());
 		assertThat(lightsaber.getCreatedAt()).isEqualTo(lightsaberEntity.getCreatedAt());
 		assertThat(lightsaber.getHistory().size()).isEqualTo(lightsaberEntity.getHistory().size());
+		assertThat(lightsaber.getDueDate()).isEqualTo(lightsaberEntity.getDueDate());
+		assertThat(lightsaber.getManufacturerId()).isEqualTo(lightsaberEntity.getManufacturerId());
 	}
-	
-	
-	
-	
-
 }

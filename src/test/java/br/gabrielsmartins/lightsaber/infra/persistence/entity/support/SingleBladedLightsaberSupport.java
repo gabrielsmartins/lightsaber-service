@@ -1,4 +1,4 @@
-package br.gabrielsmartins.lightsaber.infra.persistence.support;
+package br.gabrielsmartins.lightsaber.infra.persistence.entity.support;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

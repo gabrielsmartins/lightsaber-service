@@ -1,4 +1,4 @@
-package br.gabrielsmartins.lightsaber.support;
+package br.gabrielsmartins.lightsaber.domain.support;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
